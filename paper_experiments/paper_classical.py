@@ -9,6 +9,9 @@ scored, to obtain the same score statistics as for the autoencoders).
   --pool meanstd   mean and standard deviation over the 60 frames (2 D values)
   --pool frame     the model is trained on single frames and applied to every frame; the
                    score of a window is the mean of the scores of its frames
+  --pool flat      the window is flattened into one vector (as in paper_baselines.py)
+  --win T          length of the window (default 60); --min_clip_len L uses only the clips
+                   with at least L frames (to compare window lengths on the same clips)
 
 Methods (settings as in paper_baselines.py): PCA reconstruction (20 components),
 One-Class SVM (RBF kernel, nu = --nu, gamma = --gamma_mult x 'scale') and Isolation Forest
@@ -36,12 +39,13 @@ RAW_DIR = os.path.join(HOME, "beta_raw_v2")
 OUT_DIR = os.path.join(HOME, "paper_experiments")
 SCORE_DIR = os.path.join(OUT_DIR, "scores")
 FEATS = ["coords", "geom", "exh", "coords_nc", "geom_nc", "geom_da", "dist78", "ang286", "exh_conf", "exh_xy"]
-SEQ_LEN = 60
 V = 13
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--feat", required=True, choices=FEATS)
-parser.add_argument("--pool", required=True, choices=["mean", "meanstd", "frame"])
+parser.add_argument("--pool", required=True, choices=["mean", "meanstd", "frame", "flat"])
+parser.add_argument("--win", type=int, default=60)
+parser.add_argument("--min_clip_len", type=int, default=0)
 parser.add_argument("--seed", type=int, default=0)
 parser.add_argument("--nu", type=float, default=0.05)
 parser.add_argument("--gamma_mult", type=float, default=1.0)
@@ -49,6 +53,7 @@ parser.add_argument("--subsample", type=int, default=8000)
 parser.add_argument("--methods", default="pca,ocsvm,iforest")
 args = parser.parse_args()
 METHODS = args.methods.split(",")
+SEQ_LEN = args.win
 
 PAIRS = list(itertools.combinations(range(V), 2))
 TRIPLES = list(itertools.combinations(range(V), 3))
@@ -102,6 +107,8 @@ def win_mean(x):
 
 def summarize(f):
     """Per-frame features of one clip (T, D) -> window-level samples (T-59, D')."""
+    if args.pool == "flat":
+        return np.stack([f[s:s + SEQ_LEN].reshape(-1) for s in range(f.shape[0] - SEQ_LEN + 1)])
     m = win_mean(f)
     if args.pool == "mean":
         return m
@@ -118,7 +125,7 @@ def collect(clips, meta_by_clip, feats, label_filter=None):
             continue
         f = feats[c]
         T = f.shape[0]
-        if T < SEQ_LEN:
+        if T < max(SEQ_LEN, args.min_clip_len):
             continue
         n = T - SEQ_LEN + 1
         xs.append(f if args.pool == "frame" else summarize(f))
@@ -164,6 +171,10 @@ def main():
         base += "_g{:g}".format(args.gamma_mult)
     if args.subsample != 8000:
         base += "_n{}".format(args.subsample)
+    if args.win != 60:
+        base += "_T{}".format(args.win)
+    if args.min_clip_len:
+        base += "_minL{}".format(args.min_clip_len)
     base_seed = "{}_seed{}".format(base, args.seed)
     out_path = os.path.join(OUT_DIR, base_seed + ".json")
     meta = json.load(open(os.path.join(RAW_DIR, "meta.json")))
@@ -172,7 +183,8 @@ def main():
     drivers = sorted(set(m["driver_id"] for m in meta))
     cbd = {d: [m["clip"] for m in meta if m["driver_id"] == d] for d in drivers}
     res = {"exp": base, "feat": args.feat, "pool": args.pool, "seed": args.seed, "nu": args.nu,
-           "gamma_mult": args.gamma_mult, "subsample": args.subsample, "folds": {}}
+           "gamma_mult": args.gamma_mult, "subsample": args.subsample, "win": args.win,
+           "min_clip_len": args.min_clip_len, "folds": {}}
     if os.path.exists(out_path):
         res = json.load(open(out_path))
     for fold_idx, test_driver in enumerate(drivers):

@@ -1,0 +1,42 @@
+python3 paper_classical.py --feat geom_da --pool frame --seed 0 > logs/c_geom_da_frame_s0.log 2>&1
+python3 paper_classical.py --feat geom_da --pool meanstd --seed 0 > logs/c_geom_da_meanstd_s0.log 2>&1
+python3 paper_classical.py --feat geom_da --pool flat --seed 0 > logs/c_geom_da_flat_s0.log 2>&1
+python3 paper_classical.py --feat geom_da --pool frame --seed 1 > logs/c_geom_da_frame_s1.log 2>&1
+python3 paper_classical.py --feat geom_da --pool meanstd --seed 1 > logs/c_geom_da_meanstd_s1.log 2>&1
+python3 paper_classical.py --feat geom_da --pool flat --seed 1 > logs/c_geom_da_flat_s1.log 2>&1
+python3 paper_classical.py --feat geom_da --pool frame --seed 2 > logs/c_geom_da_frame_s2.log 2>&1
+python3 paper_classical.py --feat geom_da --pool meanstd --seed 2 > logs/c_geom_da_meanstd_s2.log 2>&1
+python3 paper_classical.py --feat geom_da --pool flat --seed 2 > logs/c_geom_da_flat_s2.log 2>&1
+python3 paper_classical.py --feat geom_da --pool mean --seed 0 --nu 0.01 --methods ocsvm > logs/c_geom_da_mean_nu0.01_s0.log 2>&1
+python3 paper_classical.py --feat geom_da --pool mean --seed 0 --nu 0.1 --methods ocsvm > logs/c_geom_da_mean_nu0.1_s0.log 2>&1
+python3 paper_classical.py --feat geom_da --pool mean --seed 0 --nu 0.2 --methods ocsvm > logs/c_geom_da_mean_nu0.2_s0.log 2>&1
+python3 paper_classical.py --feat geom_da --pool mean --seed 0 --gamma_mult 0.25 --methods ocsvm > logs/c_geom_da_mean_g0.25_s0.log 2>&1
+python3 paper_classical.py --feat geom_da --pool mean --seed 0 --gamma_mult 0.5 --methods ocsvm > logs/c_geom_da_mean_g0.5_s0.log 2>&1
+python3 paper_classical.py --feat geom_da --pool mean --seed 0 --gamma_mult 2 --methods ocsvm > logs/c_geom_da_mean_g2_s0.log 2>&1
+python3 paper_classical.py --feat geom_da --pool mean --seed 0 --gamma_mult 4 --methods ocsvm > logs/c_geom_da_mean_g4_s0.log 2>&1
+python3 paper_classical.py --feat geom_da --pool mean --seed 0 --subsample 2000 --methods ocsvm > logs/c_geom_da_mean_n2000_s0.log 2>&1
+python3 paper_classical.py --feat geom_da --pool mean --seed 0 --subsample 32000 --methods ocsvm > logs/c_geom_da_mean_n32000_s0.log 2>&1
+python3 paper_classical.py --feat geom_da --pool mean --seed 0 --win 15 --min_clip_len 90 --methods ocsvm > logs/c_geom_da_mean_T15_minL90_s0.log 2>&1
+python3 paper_classical.py --feat geom_da --pool mean --seed 0 --win 30 --min_clip_len 90 --methods ocsvm > logs/c_geom_da_mean_T30_minL90_s0.log 2>&1
+python3 paper_classical.py --feat geom_da --pool mean --seed 0 --win 60 --min_clip_len 90 --methods ocsvm > logs/c_geom_da_mean_T60_minL90_s0.log 2>&1
+python3 paper_classical.py --feat geom_da --pool mean --seed 0 --win 90 --min_clip_len 90 --methods ocsvm > logs/c_geom_da_mean_T90_minL90_s0.log 2>&1
+python3 paper_classical.py --feat geom_da --pool mean --seed 1 --win 15 --min_clip_len 90 --methods ocsvm > logs/c_geom_da_mean_T15_minL90_s1.log 2>&1
+python3 paper_classical.py --feat geom_da --pool mean --seed 1 --win 30 --min_clip_len 90 --methods ocsvm > logs/c_geom_da_mean_T30_minL90_s1.log 2>&1
+python3 paper_classical.py --feat geom_da --pool mean --seed 1 --win 60 --min_clip_len 90 --methods ocsvm > logs/c_geom_da_mean_T60_minL90_s1.log 2>&1
+python3 paper_classical.py --feat geom_da --pool mean --seed 1 --win 90 --min_clip_len 90 --methods ocsvm > logs/c_geom_da_mean_T90_minL90_s1.log 2>&1
+python3 paper_classical.py --feat geom_da --pool mean --seed 2 --win 15 --min_clip_len 90 --methods ocsvm > logs/c_geom_da_mean_T15_minL90_s2.log 2>&1
+python3 paper_classical.py --feat geom_da --pool mean --seed 2 --win 30 --min_clip_len 90 --methods ocsvm > logs/c_geom_da_mean_T30_minL90_s2.log 2>&1
+python3 paper_classical.py --feat geom_da --pool mean --seed 2 --win 60 --min_clip_len 90 --methods ocsvm > logs/c_geom_da_mean_T60_minL90_s2.log 2>&1
+python3 paper_classical.py --feat geom_da --pool mean --seed 2 --win 90 --min_clip_len 90 --methods ocsvm > logs/c_geom_da_mean_T90_minL90_s2.log 2>&1
+python3 paper_classical.py --feat exh --pool mean --seed 0 --win 15 --min_clip_len 90 --methods ocsvm > logs/c_exh_mean_T15_minL90_s0.log 2>&1
+python3 paper_classical.py --feat exh --pool mean --seed 0 --win 30 --min_clip_len 90 --methods ocsvm > logs/c_exh_mean_T30_minL90_s0.log 2>&1
+python3 paper_classical.py --feat exh --pool mean --seed 0 --win 60 --min_clip_len 90 --methods ocsvm > logs/c_exh_mean_T60_minL90_s0.log 2>&1
+python3 paper_classical.py --feat exh --pool mean --seed 0 --win 90 --min_clip_len 90 --methods ocsvm > logs/c_exh_mean_T90_minL90_s0.log 2>&1
+python3 paper_classical.py --feat exh --pool mean --seed 1 --win 15 --min_clip_len 90 --methods ocsvm > logs/c_exh_mean_T15_minL90_s1.log 2>&1
+python3 paper_classical.py --feat exh --pool mean --seed 1 --win 30 --min_clip_len 90 --methods ocsvm > logs/c_exh_mean_T30_minL90_s1.log 2>&1
+python3 paper_classical.py --feat exh --pool mean --seed 1 --win 60 --min_clip_len 90 --methods ocsvm > logs/c_exh_mean_T60_minL90_s1.log 2>&1
+python3 paper_classical.py --feat exh --pool mean --seed 1 --win 90 --min_clip_len 90 --methods ocsvm > logs/c_exh_mean_T90_minL90_s1.log 2>&1
+python3 paper_classical.py --feat exh --pool mean --seed 2 --win 15 --min_clip_len 90 --methods ocsvm > logs/c_exh_mean_T15_minL90_s2.log 2>&1
+python3 paper_classical.py --feat exh --pool mean --seed 2 --win 30 --min_clip_len 90 --methods ocsvm > logs/c_exh_mean_T30_minL90_s2.log 2>&1
+python3 paper_classical.py --feat exh --pool mean --seed 2 --win 60 --min_clip_len 90 --methods ocsvm > logs/c_exh_mean_T60_minL90_s2.log 2>&1
+python3 paper_classical.py --feat exh --pool mean --seed 2 --win 90 --min_clip_len 90 --methods ocsvm > logs/c_exh_mean_T90_minL90_s2.log 2>&1

@@ -10,6 +10,7 @@ from sklearn.metrics import roc_curve, roc_auc_score
 from load import DRIVERS
 from analyze import sc, ens_scores
 from tables import pd_
+from ablation import pd as new_pd, load as new_load
 
 OUT = sys.argv[1]
 INK, MUTED, GRID = "#0b0b0b", "#52514e", "#dddcd6"
@@ -21,7 +22,8 @@ X = lambda f, s: "x_tcn_{}_common_seed{}".format(f, s)
 # ------------------------------------------------------------------ ROC curves
 panels = [("(a) TCN, Geometry", lambda d: (sc(X("geom", 0), d)["scores"], sc(X("geom", 0), d)["labels"])),
           ("(b) TCN, Exhaustive", lambda d: (sc("x_tcn_exh_seed0", d)["scores"], sc("x_tcn_exh_seed0", d)["labels"])),
-          ("(c) Ensemble", lambda d: (ens_scores([X("geom", 0), X("hands", 0), X("hh", 0)], d), sc(X("geom", 0), d)["labels"]))]
+          ("(c) OC-SVM, Selected", lambda d: (new_load("c_geom_da_mean_seed0_ocsvm", d)["scores"],
+                                                              new_load("c_geom_da_mean_seed0_ocsvm", d)["labels"]))]
 fig, axes = plt.subplots(1, 3, figsize=(7.2, 2.75), sharey=True)
 grid = np.linspace(0, 1, 501)
 for ax, (title, fn) in zip(axes, panels):
@@ -64,15 +66,17 @@ plt.close(fig)
 
 # ------------------------------------------------------------------ per-driver AUC of the main variants
 E4 = json.load(open("ens4.json"))
-rows = [("TCN, Exhaustive", pd_("TCN-E")), ("TCN (8 channels), Geometry", pd_("TCN-G-z8")),
+rows = [("OC-SVM, Selected (window average)", new_pd("geom_da_mean|ocsvm")),
+        ("OC-SVM, Exhaustive (window average)", new_pd("exh_mean|ocsvm")),
+        ("TCN, Exhaustive", pd_("TCN-E")), ("TCN (8 channels), Geometry", pd_("TCN-G-z8")),
         ("Ensemble (3$\\times$ TCN)", np.array(E4["ens4"])), ("TCN, Coordinates", pd_("TCN-C")),
         ("TCN, Geometry", pd_("TCN-G")), ("Mamba, Geometry", pd_("Mamba-G")),
         ("TCN, Geometry (ViTPose)", pd_("TCN-vitG")),
         ("LSTM$_{\\mathrm{extend}}(12t)$, Exhaustive", pd_("LSTM-E-T12")),
-        ("LSTM$_{\\mathrm{extend}}(60t)$, Geometry", pd_("LSTM-G-T60")), ("OC-SVM, Geometry", pd_("SVM-G")),
+        ("LSTM$_{\\mathrm{extend}}(60t)$, Geometry", pd_("LSTM-G-T60")), ("OC-SVM, Geometry (flattened window)", pd_("SVM-G")),
         ("ST-GCN", pd_("STGCN"))]
 rows.sort(key=lambda r: -r[1].mean())
-fig, ax = plt.subplots(figsize=(7.2, 3.3))
+fig, ax = plt.subplots(figsize=(7.2, 3.8))
 rng = np.random.default_rng(3)
 for k, (lab, a) in enumerate(rows):
     y = len(rows) - 1 - k
@@ -97,7 +101,7 @@ handles = [Line2D([0], [0], marker="o", ls="", color=GRAY, markersize=4, label="
            Line2D([0], [0], color=BLUE, lw=2.0, label="average over the 14 drivers")]
 fig.legend(handles=handles, loc="upper center", ncol=3, frameon=False, fontsize=7.5, handlelength=1.4, columnspacing=2.0,
            bbox_to_anchor=(0.61, 1.0))
-fig.subplots_adjust(left=0.30, right=0.925, top=0.90, bottom=0.14)
+fig.subplots_adjust(left=0.33, right=0.925, top=0.91, bottom=0.12)
 fig.savefig(OUT + "/fig_drivers.pdf")
 fig.savefig("fig_drivers.png", dpi=170)
 print("rows:", [(r[0], round(float(r[1].mean()), 4)) for r in rows])
