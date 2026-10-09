@@ -1,0 +1,144 @@
+python3 paper_loso.py --exp coords_tcn --seed 1 > logs/coords_tcn_s1.log 2>&1
+python3 paper_loso.py --exp forecast_tcn --seed 1 > logs/forecast_tcn_s1.log 2>&1
+python3 paper_loso.py --exp stgcn_coords --seed 1 > logs/stgcn_coords_s1.log 2>&1
+python3 paper_loso.py --exp stgcn_kin --seed 1 > logs/stgcn_kin_s1.log 2>&1
+python3 paper_mamba.py --feat coords  --seed 0 --only_fold 0 --tag _f0 > logs/mamba_coords_f0_s0.log 2>&1
+python3 paper_mamba.py --feat coords  --seed 0 --only_fold 1 --tag _f1 > logs/mamba_coords_f1_s0.log 2>&1
+python3 paper_mamba.py --feat coords  --seed 0 --only_fold 2 --tag _f2 > logs/mamba_coords_f2_s0.log 2>&1
+python3 paper_mamba.py --feat coords  --seed 0 --only_fold 3 --tag _f3 > logs/mamba_coords_f3_s0.log 2>&1
+python3 paper_mamba.py --feat coords  --seed 0 --only_fold 4 --tag _f4 > logs/mamba_coords_f4_s0.log 2>&1
+python3 paper_mamba.py --feat coords  --seed 0 --only_fold 5 --tag _f5 > logs/mamba_coords_f5_s0.log 2>&1
+python3 paper_mamba.py --feat coords  --seed 0 --only_fold 6 --tag _f6 > logs/mamba_coords_f6_s0.log 2>&1
+python3 paper_mamba.py --feat coords  --seed 0 --only_fold 7 --tag _f7 > logs/mamba_coords_f7_s0.log 2>&1
+python3 paper_mamba.py --feat coords  --seed 0 --only_fold 8 --tag _f8 > logs/mamba_coords_f8_s0.log 2>&1
+python3 paper_mamba.py --feat coords  --seed 0 --only_fold 9 --tag _f9 > logs/mamba_coords_f9_s0.log 2>&1
+python3 paper_mamba.py --feat coords  --seed 0 --only_fold 10 --tag _f10 > logs/mamba_coords_f10_s0.log 2>&1
+python3 paper_mamba.py --feat coords  --seed 0 --only_fold 11 --tag _f11 > logs/mamba_coords_f11_s0.log 2>&1
+python3 paper_mamba.py --feat coords  --seed 0 --only_fold 12 --tag _f12 > logs/mamba_coords_f12_s0.log 2>&1
+python3 paper_mamba.py --feat coords  --seed 0 --only_fold 13 --tag _f13 > logs/mamba_coords_f13_s0.log 2>&1
+python3 paper_mamba.py --feat kin  --seed 0 --only_fold 0 --tag _f0 > logs/mamba_kin_f0_s0.log 2>&1
+python3 paper_mamba.py --feat kin  --seed 0 --only_fold 1 --tag _f1 > logs/mamba_kin_f1_s0.log 2>&1
+python3 paper_mamba.py --feat kin  --seed 0 --only_fold 2 --tag _f2 > logs/mamba_kin_f2_s0.log 2>&1
+python3 paper_mamba.py --feat kin  --seed 0 --only_fold 3 --tag _f3 > logs/mamba_kin_f3_s0.log 2>&1
+python3 paper_mamba.py --feat kin  --seed 0 --only_fold 4 --tag _f4 > logs/mamba_kin_f4_s0.log 2>&1
+python3 paper_mamba.py --feat kin  --seed 0 --only_fold 5 --tag _f5 > logs/mamba_kin_f5_s0.log 2>&1
+python3 paper_mamba.py --feat kin  --seed 0 --only_fold 6 --tag _f6 > logs/mamba_kin_f6_s0.log 2>&1
+python3 paper_mamba.py --feat kin  --seed 0 --only_fold 7 --tag _f7 > logs/mamba_kin_f7_s0.log 2>&1
+python3 paper_mamba.py --feat kin  --seed 0 --only_fold 8 --tag _f8 > logs/mamba_kin_f8_s0.log 2>&1
+python3 paper_mamba.py --feat kin  --seed 0 --only_fold 9 --tag _f9 > logs/mamba_kin_f9_s0.log 2>&1
+python3 paper_mamba.py --feat kin  --seed 0 --only_fold 10 --tag _f10 > logs/mamba_kin_f10_s0.log 2>&1
+python3 paper_mamba.py --feat kin  --seed 0 --only_fold 11 --tag _f11 > logs/mamba_kin_f11_s0.log 2>&1
+python3 paper_mamba.py --feat kin  --seed 0 --only_fold 12 --tag _f12 > logs/mamba_kin_f12_s0.log 2>&1
+python3 paper_mamba.py --feat kin  --seed 0 --only_fold 13 --tag _f13 > logs/mamba_kin_f13_s0.log 2>&1
+python3 paper_mamba.py --feat geom --common --seed 0 --only_fold 0 --tag _f0 > logs/mamba_geom_common_f0_s0.log 2>&1
+python3 paper_mamba.py --feat geom --common --seed 0 --only_fold 1 --tag _f1 > logs/mamba_geom_common_f1_s0.log 2>&1
+python3 paper_mamba.py --feat geom --common --seed 0 --only_fold 2 --tag _f2 > logs/mamba_geom_common_f2_s0.log 2>&1
+python3 paper_mamba.py --feat geom --common --seed 0 --only_fold 3 --tag _f3 > logs/mamba_geom_common_f3_s0.log 2>&1
+python3 paper_mamba.py --feat geom --common --seed 0 --only_fold 4 --tag _f4 > logs/mamba_geom_common_f4_s0.log 2>&1
+python3 paper_mamba.py --feat geom --common --seed 0 --only_fold 5 --tag _f5 > logs/mamba_geom_common_f5_s0.log 2>&1
+python3 paper_mamba.py --feat geom --common --seed 0 --only_fold 6 --tag _f6 > logs/mamba_geom_common_f6_s0.log 2>&1
+python3 paper_mamba.py --feat geom --common --seed 0 --only_fold 7 --tag _f7 > logs/mamba_geom_common_f7_s0.log 2>&1
+python3 paper_mamba.py --feat geom --common --seed 0 --only_fold 8 --tag _f8 > logs/mamba_geom_common_f8_s0.log 2>&1
+python3 paper_mamba.py --feat geom --common --seed 0 --only_fold 9 --tag _f9 > logs/mamba_geom_common_f9_s0.log 2>&1
+python3 paper_mamba.py --feat geom --common --seed 0 --only_fold 10 --tag _f10 > logs/mamba_geom_common_f10_s0.log 2>&1
+python3 paper_mamba.py --feat geom --common --seed 0 --only_fold 11 --tag _f11 > logs/mamba_geom_common_f11_s0.log 2>&1
+python3 paper_mamba.py --feat geom --common --seed 0 --only_fold 12 --tag _f12 > logs/mamba_geom_common_f12_s0.log 2>&1
+python3 paper_mamba.py --feat geom --common --seed 0 --only_fold 13 --tag _f13 > logs/mamba_geom_common_f13_s0.log 2>&1
+python3 paper_mamba.py --feat hands --common --seed 0 --only_fold 0 --tag _f0 > logs/mamba_hands_common_f0_s0.log 2>&1
+python3 paper_mamba.py --feat hands --common --seed 0 --only_fold 1 --tag _f1 > logs/mamba_hands_common_f1_s0.log 2>&1
+python3 paper_mamba.py --feat hands --common --seed 0 --only_fold 2 --tag _f2 > logs/mamba_hands_common_f2_s0.log 2>&1
+python3 paper_mamba.py --feat hands --common --seed 0 --only_fold 3 --tag _f3 > logs/mamba_hands_common_f3_s0.log 2>&1
+python3 paper_mamba.py --feat hands --common --seed 0 --only_fold 4 --tag _f4 > logs/mamba_hands_common_f4_s0.log 2>&1
+python3 paper_mamba.py --feat hands --common --seed 0 --only_fold 5 --tag _f5 > logs/mamba_hands_common_f5_s0.log 2>&1
+python3 paper_mamba.py --feat hands --common --seed 0 --only_fold 6 --tag _f6 > logs/mamba_hands_common_f6_s0.log 2>&1
+python3 paper_mamba.py --feat hands --common --seed 0 --only_fold 7 --tag _f7 > logs/mamba_hands_common_f7_s0.log 2>&1
+python3 paper_mamba.py --feat hands --common --seed 0 --only_fold 8 --tag _f8 > logs/mamba_hands_common_f8_s0.log 2>&1
+python3 paper_mamba.py --feat hands --common --seed 0 --only_fold 9 --tag _f9 > logs/mamba_hands_common_f9_s0.log 2>&1
+python3 paper_mamba.py --feat hands --common --seed 0 --only_fold 10 --tag _f10 > logs/mamba_hands_common_f10_s0.log 2>&1
+python3 paper_mamba.py --feat hands --common --seed 0 --only_fold 11 --tag _f11 > logs/mamba_hands_common_f11_s0.log 2>&1
+python3 paper_mamba.py --feat hands --common --seed 0 --only_fold 12 --tag _f12 > logs/mamba_hands_common_f12_s0.log 2>&1
+python3 paper_mamba.py --feat hands --common --seed 0 --only_fold 13 --tag _f13 > logs/mamba_hands_common_f13_s0.log 2>&1
+python3 paper_mamba.py --feat hh --common --seed 0 --only_fold 0 --tag _f0 > logs/mamba_hh_common_f0_s0.log 2>&1
+python3 paper_mamba.py --feat hh --common --seed 0 --only_fold 1 --tag _f1 > logs/mamba_hh_common_f1_s0.log 2>&1
+python3 paper_mamba.py --feat hh --common --seed 0 --only_fold 2 --tag _f2 > logs/mamba_hh_common_f2_s0.log 2>&1
+python3 paper_mamba.py --feat hh --common --seed 0 --only_fold 3 --tag _f3 > logs/mamba_hh_common_f3_s0.log 2>&1
+python3 paper_mamba.py --feat hh --common --seed 0 --only_fold 4 --tag _f4 > logs/mamba_hh_common_f4_s0.log 2>&1
+python3 paper_mamba.py --feat hh --common --seed 0 --only_fold 5 --tag _f5 > logs/mamba_hh_common_f5_s0.log 2>&1
+python3 paper_mamba.py --feat hh --common --seed 0 --only_fold 6 --tag _f6 > logs/mamba_hh_common_f6_s0.log 2>&1
+python3 paper_mamba.py --feat hh --common --seed 0 --only_fold 7 --tag _f7 > logs/mamba_hh_common_f7_s0.log 2>&1
+python3 paper_mamba.py --feat hh --common --seed 0 --only_fold 8 --tag _f8 > logs/mamba_hh_common_f8_s0.log 2>&1
+python3 paper_mamba.py --feat hh --common --seed 0 --only_fold 9 --tag _f9 > logs/mamba_hh_common_f9_s0.log 2>&1
+python3 paper_mamba.py --feat hh --common --seed 0 --only_fold 10 --tag _f10 > logs/mamba_hh_common_f10_s0.log 2>&1
+python3 paper_mamba.py --feat hh --common --seed 0 --only_fold 11 --tag _f11 > logs/mamba_hh_common_f11_s0.log 2>&1
+python3 paper_mamba.py --feat hh --common --seed 0 --only_fold 12 --tag _f12 > logs/mamba_hh_common_f12_s0.log 2>&1
+python3 paper_mamba.py --feat hh --common --seed 0 --only_fold 13 --tag _f13 > logs/mamba_hh_common_f13_s0.log 2>&1
+python3 paper_mamba.py --feat coords  --seed 1 --only_fold 0 --tag _f0 > logs/mamba_coords_f0_s1.log 2>&1
+python3 paper_mamba.py --feat coords  --seed 1 --only_fold 1 --tag _f1 > logs/mamba_coords_f1_s1.log 2>&1
+python3 paper_mamba.py --feat coords  --seed 1 --only_fold 2 --tag _f2 > logs/mamba_coords_f2_s1.log 2>&1
+python3 paper_mamba.py --feat coords  --seed 1 --only_fold 3 --tag _f3 > logs/mamba_coords_f3_s1.log 2>&1
+python3 paper_mamba.py --feat coords  --seed 1 --only_fold 4 --tag _f4 > logs/mamba_coords_f4_s1.log 2>&1
+python3 paper_mamba.py --feat coords  --seed 1 --only_fold 5 --tag _f5 > logs/mamba_coords_f5_s1.log 2>&1
+python3 paper_mamba.py --feat coords  --seed 1 --only_fold 6 --tag _f6 > logs/mamba_coords_f6_s1.log 2>&1
+python3 paper_mamba.py --feat coords  --seed 1 --only_fold 7 --tag _f7 > logs/mamba_coords_f7_s1.log 2>&1
+python3 paper_mamba.py --feat coords  --seed 1 --only_fold 8 --tag _f8 > logs/mamba_coords_f8_s1.log 2>&1
+python3 paper_mamba.py --feat coords  --seed 1 --only_fold 9 --tag _f9 > logs/mamba_coords_f9_s1.log 2>&1
+python3 paper_mamba.py --feat coords  --seed 1 --only_fold 10 --tag _f10 > logs/mamba_coords_f10_s1.log 2>&1
+python3 paper_mamba.py --feat coords  --seed 1 --only_fold 11 --tag _f11 > logs/mamba_coords_f11_s1.log 2>&1
+python3 paper_mamba.py --feat coords  --seed 1 --only_fold 12 --tag _f12 > logs/mamba_coords_f12_s1.log 2>&1
+python3 paper_mamba.py --feat coords  --seed 1 --only_fold 13 --tag _f13 > logs/mamba_coords_f13_s1.log 2>&1
+python3 paper_mamba.py --feat kin  --seed 1 --only_fold 0 --tag _f0 > logs/mamba_kin_f0_s1.log 2>&1
+python3 paper_mamba.py --feat kin  --seed 1 --only_fold 1 --tag _f1 > logs/mamba_kin_f1_s1.log 2>&1
+python3 paper_mamba.py --feat kin  --seed 1 --only_fold 2 --tag _f2 > logs/mamba_kin_f2_s1.log 2>&1
+python3 paper_mamba.py --feat kin  --seed 1 --only_fold 3 --tag _f3 > logs/mamba_kin_f3_s1.log 2>&1
+python3 paper_mamba.py --feat kin  --seed 1 --only_fold 4 --tag _f4 > logs/mamba_kin_f4_s1.log 2>&1
+python3 paper_mamba.py --feat kin  --seed 1 --only_fold 5 --tag _f5 > logs/mamba_kin_f5_s1.log 2>&1
+python3 paper_mamba.py --feat kin  --seed 1 --only_fold 6 --tag _f6 > logs/mamba_kin_f6_s1.log 2>&1
+python3 paper_mamba.py --feat kin  --seed 1 --only_fold 7 --tag _f7 > logs/mamba_kin_f7_s1.log 2>&1
+python3 paper_mamba.py --feat kin  --seed 1 --only_fold 8 --tag _f8 > logs/mamba_kin_f8_s1.log 2>&1
+python3 paper_mamba.py --feat kin  --seed 1 --only_fold 9 --tag _f9 > logs/mamba_kin_f9_s1.log 2>&1
+python3 paper_mamba.py --feat kin  --seed 1 --only_fold 10 --tag _f10 > logs/mamba_kin_f10_s1.log 2>&1
+python3 paper_mamba.py --feat kin  --seed 1 --only_fold 11 --tag _f11 > logs/mamba_kin_f11_s1.log 2>&1
+python3 paper_mamba.py --feat kin  --seed 1 --only_fold 12 --tag _f12 > logs/mamba_kin_f12_s1.log 2>&1
+python3 paper_mamba.py --feat kin  --seed 1 --only_fold 13 --tag _f13 > logs/mamba_kin_f13_s1.log 2>&1
+python3 paper_mamba.py --feat geom --common --seed 1 --only_fold 0 --tag _f0 > logs/mamba_geom_common_f0_s1.log 2>&1
+python3 paper_mamba.py --feat geom --common --seed 1 --only_fold 1 --tag _f1 > logs/mamba_geom_common_f1_s1.log 2>&1
+python3 paper_mamba.py --feat geom --common --seed 1 --only_fold 2 --tag _f2 > logs/mamba_geom_common_f2_s1.log 2>&1
+python3 paper_mamba.py --feat geom --common --seed 1 --only_fold 3 --tag _f3 > logs/mamba_geom_common_f3_s1.log 2>&1
+python3 paper_mamba.py --feat geom --common --seed 1 --only_fold 4 --tag _f4 > logs/mamba_geom_common_f4_s1.log 2>&1
+python3 paper_mamba.py --feat geom --common --seed 1 --only_fold 5 --tag _f5 > logs/mamba_geom_common_f5_s1.log 2>&1
+python3 paper_mamba.py --feat geom --common --seed 1 --only_fold 6 --tag _f6 > logs/mamba_geom_common_f6_s1.log 2>&1
+python3 paper_mamba.py --feat geom --common --seed 1 --only_fold 7 --tag _f7 > logs/mamba_geom_common_f7_s1.log 2>&1
+python3 paper_mamba.py --feat geom --common --seed 1 --only_fold 8 --tag _f8 > logs/mamba_geom_common_f8_s1.log 2>&1
+python3 paper_mamba.py --feat geom --common --seed 1 --only_fold 9 --tag _f9 > logs/mamba_geom_common_f9_s1.log 2>&1
+python3 paper_mamba.py --feat geom --common --seed 1 --only_fold 10 --tag _f10 > logs/mamba_geom_common_f10_s1.log 2>&1
+python3 paper_mamba.py --feat geom --common --seed 1 --only_fold 11 --tag _f11 > logs/mamba_geom_common_f11_s1.log 2>&1
+python3 paper_mamba.py --feat geom --common --seed 1 --only_fold 12 --tag _f12 > logs/mamba_geom_common_f12_s1.log 2>&1
+python3 paper_mamba.py --feat geom --common --seed 1 --only_fold 13 --tag _f13 > logs/mamba_geom_common_f13_s1.log 2>&1
+python3 paper_mamba.py --feat hands --common --seed 1 --only_fold 0 --tag _f0 > logs/mamba_hands_common_f0_s1.log 2>&1
+python3 paper_mamba.py --feat hands --common --seed 1 --only_fold 1 --tag _f1 > logs/mamba_hands_common_f1_s1.log 2>&1
+python3 paper_mamba.py --feat hands --common --seed 1 --only_fold 2 --tag _f2 > logs/mamba_hands_common_f2_s1.log 2>&1
+python3 paper_mamba.py --feat hands --common --seed 1 --only_fold 3 --tag _f3 > logs/mamba_hands_common_f3_s1.log 2>&1
+python3 paper_mamba.py --feat hands --common --seed 1 --only_fold 4 --tag _f4 > logs/mamba_hands_common_f4_s1.log 2>&1
+python3 paper_mamba.py --feat hands --common --seed 1 --only_fold 5 --tag _f5 > logs/mamba_hands_common_f5_s1.log 2>&1
+python3 paper_mamba.py --feat hands --common --seed 1 --only_fold 6 --tag _f6 > logs/mamba_hands_common_f6_s1.log 2>&1
+python3 paper_mamba.py --feat hands --common --seed 1 --only_fold 7 --tag _f7 > logs/mamba_hands_common_f7_s1.log 2>&1
+python3 paper_mamba.py --feat hands --common --seed 1 --only_fold 8 --tag _f8 > logs/mamba_hands_common_f8_s1.log 2>&1
+python3 paper_mamba.py --feat hands --common --seed 1 --only_fold 9 --tag _f9 > logs/mamba_hands_common_f9_s1.log 2>&1
+python3 paper_mamba.py --feat hands --common --seed 1 --only_fold 10 --tag _f10 > logs/mamba_hands_common_f10_s1.log 2>&1
+python3 paper_mamba.py --feat hands --common --seed 1 --only_fold 11 --tag _f11 > logs/mamba_hands_common_f11_s1.log 2>&1
+python3 paper_mamba.py --feat hands --common --seed 1 --only_fold 12 --tag _f12 > logs/mamba_hands_common_f12_s1.log 2>&1
+python3 paper_mamba.py --feat hands --common --seed 1 --only_fold 13 --tag _f13 > logs/mamba_hands_common_f13_s1.log 2>&1
+python3 paper_mamba.py --feat hh --common --seed 1 --only_fold 0 --tag _f0 > logs/mamba_hh_common_f0_s1.log 2>&1
+python3 paper_mamba.py --feat hh --common --seed 1 --only_fold 1 --tag _f1 > logs/mamba_hh_common_f1_s1.log 2>&1
+python3 paper_mamba.py --feat hh --common --seed 1 --only_fold 2 --tag _f2 > logs/mamba_hh_common_f2_s1.log 2>&1
+python3 paper_mamba.py --feat hh --common --seed 1 --only_fold 3 --tag _f3 > logs/mamba_hh_common_f3_s1.log 2>&1
+python3 paper_mamba.py --feat hh --common --seed 1 --only_fold 4 --tag _f4 > logs/mamba_hh_common_f4_s1.log 2>&1
+python3 paper_mamba.py --feat hh --common --seed 1 --only_fold 5 --tag _f5 > logs/mamba_hh_common_f5_s1.log 2>&1
+python3 paper_mamba.py --feat hh --common --seed 1 --only_fold 6 --tag _f6 > logs/mamba_hh_common_f6_s1.log 2>&1
+python3 paper_mamba.py --feat hh --common --seed 1 --only_fold 7 --tag _f7 > logs/mamba_hh_common_f7_s1.log 2>&1
+python3 paper_mamba.py --feat hh --common --seed 1 --only_fold 8 --tag _f8 > logs/mamba_hh_common_f8_s1.log 2>&1
+python3 paper_mamba.py --feat hh --common --seed 1 --only_fold 9 --tag _f9 > logs/mamba_hh_common_f9_s1.log 2>&1
+python3 paper_mamba.py --feat hh --common --seed 1 --only_fold 10 --tag _f10 > logs/mamba_hh_common_f10_s1.log 2>&1
+python3 paper_mamba.py --feat hh --common --seed 1 --only_fold 11 --tag _f11 > logs/mamba_hh_common_f11_s1.log 2>&1
+python3 paper_mamba.py --feat hh --common --seed 1 --only_fold 12 --tag _f12 > logs/mamba_hh_common_f12_s1.log 2>&1
+python3 paper_mamba.py --feat hh --common --seed 1 --only_fold 13 --tag _f13 > logs/mamba_hh_common_f13_s1.log 2>&1

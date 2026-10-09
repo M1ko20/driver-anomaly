@@ -1,0 +1,60 @@
+python3 paper_classical.py --feat exh --pool mean --seed 0 > logs/c_exh_mean_s0.log 2>&1
+python3 paper_classical.py --feat geom --pool mean --seed 0 > logs/c_geom_mean_s0.log 2>&1
+python3 paper_classical.py --feat coords --pool mean --seed 0 > logs/c_coords_mean_s0.log 2>&1
+python3 paper_classical.py --feat coords_nc --pool mean --seed 0 > logs/c_coords_nc_mean_s0.log 2>&1
+python3 paper_classical.py --feat geom_nc --pool mean --seed 0 > logs/c_geom_nc_mean_s0.log 2>&1
+python3 paper_classical.py --feat geom_da --pool mean --seed 0 > logs/c_geom_da_mean_s0.log 2>&1
+python3 paper_classical.py --feat dist78 --pool mean --seed 0 > logs/c_dist78_mean_s0.log 2>&1
+python3 paper_classical.py --feat ang286 --pool mean --seed 0 > logs/c_ang286_mean_s0.log 2>&1
+python3 paper_classical.py --feat exh_conf --pool mean --seed 0 > logs/c_exh_conf_mean_s0.log 2>&1
+python3 paper_classical.py --feat exh_xy --pool mean --seed 0 > logs/c_exh_xy_mean_s0.log 2>&1
+python3 paper_classical.py --feat exh --pool mean --seed 1 > logs/c_exh_mean_s1.log 2>&1
+python3 paper_classical.py --feat geom --pool mean --seed 1 > logs/c_geom_mean_s1.log 2>&1
+python3 paper_classical.py --feat coords --pool mean --seed 1 > logs/c_coords_mean_s1.log 2>&1
+python3 paper_classical.py --feat coords_nc --pool mean --seed 1 > logs/c_coords_nc_mean_s1.log 2>&1
+python3 paper_classical.py --feat geom_nc --pool mean --seed 1 > logs/c_geom_nc_mean_s1.log 2>&1
+python3 paper_classical.py --feat geom_da --pool mean --seed 1 > logs/c_geom_da_mean_s1.log 2>&1
+python3 paper_classical.py --feat dist78 --pool mean --seed 1 > logs/c_dist78_mean_s1.log 2>&1
+python3 paper_classical.py --feat ang286 --pool mean --seed 1 > logs/c_ang286_mean_s1.log 2>&1
+python3 paper_classical.py --feat exh_conf --pool mean --seed 1 > logs/c_exh_conf_mean_s1.log 2>&1
+python3 paper_classical.py --feat exh_xy --pool mean --seed 1 > logs/c_exh_xy_mean_s1.log 2>&1
+python3 paper_classical.py --feat exh --pool mean --seed 2 > logs/c_exh_mean_s2.log 2>&1
+python3 paper_classical.py --feat geom --pool mean --seed 2 > logs/c_geom_mean_s2.log 2>&1
+python3 paper_classical.py --feat coords --pool mean --seed 2 > logs/c_coords_mean_s2.log 2>&1
+python3 paper_classical.py --feat coords_nc --pool mean --seed 2 > logs/c_coords_nc_mean_s2.log 2>&1
+python3 paper_classical.py --feat geom_nc --pool mean --seed 2 > logs/c_geom_nc_mean_s2.log 2>&1
+python3 paper_classical.py --feat geom_da --pool mean --seed 2 > logs/c_geom_da_mean_s2.log 2>&1
+python3 paper_classical.py --feat dist78 --pool mean --seed 2 > logs/c_dist78_mean_s2.log 2>&1
+python3 paper_classical.py --feat ang286 --pool mean --seed 2 > logs/c_ang286_mean_s2.log 2>&1
+python3 paper_classical.py --feat exh_conf --pool mean --seed 2 > logs/c_exh_conf_mean_s2.log 2>&1
+python3 paper_classical.py --feat exh_xy --pool mean --seed 2 > logs/c_exh_xy_mean_s2.log 2>&1
+python3 paper_classical.py --feat exh --pool frame --seed 0 > logs/c_exh_frame_s0.log 2>&1
+python3 paper_classical.py --feat exh --pool meanstd --seed 0 > logs/c_exh_meanstd_s0.log 2>&1
+python3 paper_classical.py --feat geom --pool frame --seed 0 > logs/c_geom_frame_s0.log 2>&1
+python3 paper_classical.py --feat geom --pool meanstd --seed 0 > logs/c_geom_meanstd_s0.log 2>&1
+python3 paper_classical.py --feat exh --pool frame --seed 1 > logs/c_exh_frame_s1.log 2>&1
+python3 paper_classical.py --feat exh --pool meanstd --seed 1 > logs/c_exh_meanstd_s1.log 2>&1
+python3 paper_classical.py --feat geom --pool frame --seed 1 > logs/c_geom_frame_s1.log 2>&1
+python3 paper_classical.py --feat geom --pool meanstd --seed 1 > logs/c_geom_meanstd_s1.log 2>&1
+python3 paper_classical.py --feat exh --pool frame --seed 2 > logs/c_exh_frame_s2.log 2>&1
+python3 paper_classical.py --feat exh --pool meanstd --seed 2 > logs/c_exh_meanstd_s2.log 2>&1
+python3 paper_classical.py --feat geom --pool frame --seed 2 > logs/c_geom_frame_s2.log 2>&1
+python3 paper_classical.py --feat geom --pool meanstd --seed 2 > logs/c_geom_meanstd_s2.log 2>&1
+python3 paper_classical.py --feat exh --pool mean --seed 0 --nu 0.01 --methods ocsvm > logs/c_exh_mean_nu0.01_s0.log 2>&1
+python3 paper_classical.py --feat exh --pool mean --seed 0 --nu 0.1 --methods ocsvm > logs/c_exh_mean_nu0.1_s0.log 2>&1
+python3 paper_classical.py --feat exh --pool mean --seed 0 --nu 0.2 --methods ocsvm > logs/c_exh_mean_nu0.2_s0.log 2>&1
+python3 paper_classical.py --feat exh --pool mean --seed 0 --gamma_mult 0.25 --methods ocsvm > logs/c_exh_mean_g0.25_s0.log 2>&1
+python3 paper_classical.py --feat exh --pool mean --seed 0 --gamma_mult 0.5 --methods ocsvm > logs/c_exh_mean_g0.5_s0.log 2>&1
+python3 paper_classical.py --feat exh --pool mean --seed 0 --gamma_mult 2 --methods ocsvm > logs/c_exh_mean_g2_s0.log 2>&1
+python3 paper_classical.py --feat exh --pool mean --seed 0 --gamma_mult 4 --methods ocsvm > logs/c_exh_mean_g4_s0.log 2>&1
+python3 paper_classical.py --feat exh --pool mean --seed 0 --subsample 2000 --methods ocsvm > logs/c_exh_mean_n2000_s0.log 2>&1
+python3 paper_classical.py --feat exh --pool mean --seed 0 --subsample 32000 --methods ocsvm > logs/c_exh_mean_n32000_s0.log 2>&1
+python3 paper_classical.py --feat geom --pool mean --seed 0 --nu 0.01 --methods ocsvm > logs/c_geom_mean_nu0.01_s0.log 2>&1
+python3 paper_classical.py --feat geom --pool mean --seed 0 --nu 0.1 --methods ocsvm > logs/c_geom_mean_nu0.1_s0.log 2>&1
+python3 paper_classical.py --feat geom --pool mean --seed 0 --nu 0.2 --methods ocsvm > logs/c_geom_mean_nu0.2_s0.log 2>&1
+python3 paper_classical.py --feat geom --pool mean --seed 0 --gamma_mult 0.25 --methods ocsvm > logs/c_geom_mean_g0.25_s0.log 2>&1
+python3 paper_classical.py --feat geom --pool mean --seed 0 --gamma_mult 0.5 --methods ocsvm > logs/c_geom_mean_g0.5_s0.log 2>&1
+python3 paper_classical.py --feat geom --pool mean --seed 0 --gamma_mult 2 --methods ocsvm > logs/c_geom_mean_g2_s0.log 2>&1
+python3 paper_classical.py --feat geom --pool mean --seed 0 --gamma_mult 4 --methods ocsvm > logs/c_geom_mean_g4_s0.log 2>&1
+python3 paper_classical.py --feat geom --pool mean --seed 0 --subsample 2000 --methods ocsvm > logs/c_geom_mean_n2000_s0.log 2>&1
+python3 paper_classical.py --feat geom --pool mean --seed 0 --subsample 32000 --methods ocsvm > logs/c_geom_mean_n32000_s0.log 2>&1

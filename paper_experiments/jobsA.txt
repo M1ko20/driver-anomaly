@@ -1,0 +1,29 @@
+python3 paper_extra.py --model tcn --feat geom --common --seed 0 > logs/x_model_tcn_feat_geom_common_seed_0.log 2>&1
+python3 paper_extra.py --model tcn --feat geom --common --seed 1 > logs/x_model_tcn_feat_geom_common_seed_1.log 2>&1
+python3 paper_extra.py --model tcn --feat geom --common --seed 2 > logs/x_model_tcn_feat_geom_common_seed_2.log 2>&1
+python3 paper_extra.py --model tcn --feat hands --common --seed 0 > logs/x_model_tcn_feat_hands_common_seed_0.log 2>&1
+python3 paper_extra.py --model tcn --feat hh --common --seed 0 > logs/x_model_tcn_feat_hh_common_seed_0.log 2>&1
+python3 paper_extra.py --model tcn --feat hands --common --seed 1 > logs/x_model_tcn_feat_hands_common_seed_1.log 2>&1
+python3 paper_extra.py --model tcn --feat hh --common --seed 1 > logs/x_model_tcn_feat_hh_common_seed_1.log 2>&1
+python3 paper_extra.py --model tcn --feat exh --seed 0 > logs/x_model_tcn_feat_exh_seed_0.log 2>&1
+python3 paper_extra.py --model tcn --feat vit_geom --seed 0 > logs/x_model_tcn_feat_vit_geom_seed_0.log 2>&1
+python3 paper_extra.py --model lstm --feat geom --seq_len 12 --batch_size 128 --seed 0 > logs/x_model_lstm_feat_geom_seq_len_12_batch_size_128_seed_0.log 2>&1
+python3 paper_extra.py --model tcn --feat exh --seed 1 > logs/x_model_tcn_feat_exh_seed_1.log 2>&1
+python3 paper_extra.py --model tcn --feat vit_geom --seed 1 > logs/x_model_tcn_feat_vit_geom_seed_1.log 2>&1
+python3 paper_extra.py --model tcn --feat vit_coords --seed 0 > logs/x_model_tcn_feat_vit_coords_seed_0.log 2>&1
+python3 paper_extra.py --model tcn --feat geom --seq_len 30 --min_clip_len 90 --seed 0 > logs/x_model_tcn_feat_geom_seq_len_30_min_clip_len_90_seed_0.log 2>&1
+python3 paper_extra.py --model tcn --feat geom --seq_len 60 --min_clip_len 90 --seed 0 > logs/x_model_tcn_feat_geom_seq_len_60_min_clip_len_90_seed_0.log 2>&1
+python3 paper_extra.py --model tcn --feat geom --seq_len 90 --min_clip_len 90 --seed 0 > logs/x_model_tcn_feat_geom_seq_len_90_min_clip_len_90_seed_0.log 2>&1
+python3 paper_extra.py --model tcn --feat geom --seq_len 30 --min_clip_len 90 --seed 1 > logs/x_model_tcn_feat_geom_seq_len_30_min_clip_len_90_seed_1.log 2>&1
+python3 paper_extra.py --model tcn --feat geom --seq_len 60 --min_clip_len 90 --seed 1 > logs/x_model_tcn_feat_geom_seq_len_60_min_clip_len_90_seed_1.log 2>&1
+python3 paper_extra.py --model tcn --feat geom --seq_len 90 --min_clip_len 90 --seed 1 > logs/x_model_tcn_feat_geom_seq_len_90_min_clip_len_90_seed_1.log 2>&1
+python3 paper_extra.py --model tcn --feat geom --latent 4 --seed 0 > logs/x_model_tcn_feat_geom_latent_4_seed_0.log 2>&1
+python3 paper_extra.py --model tcn --feat geom --latent 8 --seed 0 > logs/x_model_tcn_feat_geom_latent_8_seed_0.log 2>&1
+python3 paper_extra.py --model tcn --feat geom --latent 32 --seed 0 > logs/x_model_tcn_feat_geom_latent_32_seed_0.log 2>&1
+python3 paper_extra.py --model tcn --feat geom --latent 4 --seed 1 > logs/x_model_tcn_feat_geom_latent_4_seed_1.log 2>&1
+python3 paper_extra.py --model tcn --feat geom --latent 8 --seed 1 > logs/x_model_tcn_feat_geom_latent_8_seed_1.log 2>&1
+python3 paper_extra.py --model tcn --feat geom --latent 32 --seed 1 > logs/x_model_tcn_feat_geom_latent_32_seed_1.log 2>&1
+python3 paper_extra.py --model lstm --feat exh --seq_len 12 --batch_size 128 --seed 0 > logs/x_model_lstm_feat_exh_seq_len_12_batch_size_128_seed_0.log 2>&1
+python3 paper_extra.py --model lstm --feat geom --seq_len 12 --batch_size 128 --seed 1 > logs/x_model_lstm_feat_geom_seq_len_12_batch_size_128_seed_1.log 2>&1
+python3 paper_extra.py --model tcn --feat vit_coords --seed 1 > logs/x_model_tcn_feat_vit_coords_seed_1.log 2>&1
+python3 paper_extra.py --model lstm --feat geom --seq_len 60 --batch_size 128 --seed 0 > logs/x_model_lstm_feat_geom_seq_len_60_batch_size_128_seed_0.log 2>&1

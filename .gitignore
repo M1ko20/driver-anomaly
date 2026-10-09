@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+*.npz
+*.npy
+*.pt
+*.mp4
+*.log
+logs/
+scores/
+models/
+slots/
+.DS_Store
