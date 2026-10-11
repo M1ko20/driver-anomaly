@@ -57,7 +57,7 @@ for p in sorted(glob.glob(os.path.join(PE, "x_*_seed*.json"))):
     add(d["exp"], from_folds(d, scores=base))
 
 # --- queue B (paper_mamba.py), one file per fold
-for feat in ["coords", "kin", "geom_common", "hands_common", "hh_common"]:
+for feat in ["coords", "kin", "geom_common", "hands_common", "hh_common", "geom_da"]:   # geom_da = Selected
     for s in (0, 1):
         files = sorted(glob.glob(os.path.join(PE, "mamba_{}_f*_seed{}.json".format(feat, s))))
         if not files:

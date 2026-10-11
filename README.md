@@ -7,9 +7,11 @@ DMD dataset (leave-one-subject-out protocol, 14 drivers).
 - `common/`, `training/`, `baselines/`, `aggregation/`, `eval/` — earlier experiments
 - `paper_experiments/` — the LOSO runs reported in the article
   - `paper_loso.py`, `paper_extra.py`, `paper_mamba.py`, `paper_baselines.py` — autoencoders and flattened-window baselines
-  - `paper_ablation.py` — feature / bottleneck / kernel-size ablations of the TCN autoencoder
+  - `paper_ablation.py` — feature / bottleneck / kernel-size ablations of the TCN autoencoder; `--pool mean` trains the autoencoder on the window-averaged vectors
   - `paper_classical.py` — one-class methods on window-level summaries of the features
-- `analysis/` — scripts that turn the result files into the tables and figures
+  - `time_classical.py` — CPU time of OC-SVM and of the TCN autoencoder
+- `analysis/` — scripts that turn the result files into the tables and figures (`bootstrap.py`: confidence intervals over clips, `pairs_tcn.py`: paired tests of the ablations, `fig_pipeline.py`: overview figure)
+- `eval/driver_shift.py` — how the normal driving of each driver differs from the other drivers, per group of features
 
 The DMD videos and everything derived from them (clips, skeletons, features, scores) are
 not part of this repository; the dataset is available from https://dmd.vicomtech.org/

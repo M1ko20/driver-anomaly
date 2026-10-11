@@ -42,7 +42,8 @@ SCORE_DIR = os.path.join(OUT_DIR, "scores")
 RAW = {"beta": os.path.join(HOME, "beta_raw_v2"),
        "epsilon": os.path.join(HOME, "epsilon_raw_v2"),
        "zeta": os.path.join(HOME, "zeta_raw_v2")}
-FEAT_SRC = {"coords": "beta", "geom": "beta", "kin": "beta", "hands": "epsilon", "hh": "zeta"}
+FEAT_SRC = {"coords": "beta", "geom": "beta", "kin": "beta", "hands": "epsilon", "hh": "zeta",
+            "geom_da": "beta"}   # geom_da: only the 8 distances + 5 angles of Geometry (Selected, 13)
 SEQ_LEN = 60
 BATCH_SIZE = 64
 PATIENCE = 10
@@ -57,14 +58,19 @@ parser.add_argument("--only_fold", type=int, default=-1)
 parser.add_argument("--max_epochs", type=int, default=100)
 parser.add_argument("--common", action="store_true")
 parser.add_argument("--tag", default="")
+parser.add_argument("--gpu_mem_frac", type=float, default=0.0)
 args = parser.parse_args()
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+if args.gpu_mem_frac > 0 and device.type == "cuda":   # the GPUs are shared with other users
+    torch.cuda.set_per_process_memory_fraction(args.gpu_mem_frac)
 
 
 def build_features(b, feat):
     """Identical to paper_loso.py for coords / geom / kin."""
     if feat in ("geom", "hands", "hh"):
         return b.astype(np.float32)
+    if feat == "geom_da":
+        return np.ascontiguousarray(b[:, 39:], dtype=np.float32)
     T = b.shape[0]
     alpha = b[:, :39]
     if feat == "coords":

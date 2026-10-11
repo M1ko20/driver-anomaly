@@ -68,6 +68,9 @@ plt.close(fig)
 E4 = json.load(open("ens4.json"))
 rows = [("OC-SVM, Selected (window average)", new_pd("geom_da_mean|ocsvm")),
         ("OC-SVM, Exhaustive (window average)", new_pd("exh_mean|ocsvm")),
+        ("Autoencoder, Exhaustive (window average)", new_pd("tcn_exh_k1_mean")),
+        ("Autoencoder, Selected (window average)", new_pd("tcn_geom_da_k1_mean")),
+        ("TCN, Selected", new_pd("tcn_geom_da")),
         ("TCN, Exhaustive", pd_("TCN-E")), ("TCN (8 channels), Geometry", pd_("TCN-G-z8")),
         ("Ensemble (3$\\times$ TCN)", np.array(E4["ens4"])), ("TCN, Coordinates", pd_("TCN-C")),
         ("TCN, Geometry", pd_("TCN-G")), ("Mamba, Geometry", pd_("Mamba-G")),
@@ -76,7 +79,7 @@ rows = [("OC-SVM, Selected (window average)", new_pd("geom_da_mean|ocsvm")),
         ("LSTM$_{\\mathrm{extend}}(60t)$, Geometry", pd_("LSTM-G-T60")), ("OC-SVM, Geometry (flattened window)", pd_("SVM-G")),
         ("ST-GCN", pd_("STGCN"))]
 rows.sort(key=lambda r: -r[1].mean())
-fig, ax = plt.subplots(figsize=(7.2, 3.8))
+fig, ax = plt.subplots(figsize=(7.4, 4.3))
 rng = np.random.default_rng(3)
 for k, (lab, a) in enumerate(rows):
     y = len(rows) - 1 - k
@@ -100,8 +103,8 @@ handles = [Line2D([0], [0], marker="o", ls="", color=GRAY, markersize=4, label="
            Line2D([0], [0], marker="o", ls="", color=ORANGE, markersize=4.6, label="Driver-9"),
            Line2D([0], [0], color=BLUE, lw=2.0, label="average over the 14 drivers")]
 fig.legend(handles=handles, loc="upper center", ncol=3, frameon=False, fontsize=7.5, handlelength=1.4, columnspacing=2.0,
-           bbox_to_anchor=(0.61, 1.0))
-fig.subplots_adjust(left=0.33, right=0.925, top=0.91, bottom=0.12)
+           bbox_to_anchor=(0.64, 1.0))
+fig.subplots_adjust(left=0.37, right=0.925, top=0.92, bottom=0.11)
 fig.savefig(OUT + "/fig_drivers.pdf")
 fig.savefig("fig_drivers.png", dpi=170)
 print("rows:", [(r[0], round(float(r[1].mean()), 4)) for r in rows])

@@ -29,7 +29,12 @@ Feature sets (all from the 13 normalized keypoints in beta_raw_v2)
 Model: TCN autoencoder (64-32-Z / 32-64 channels), Z = --latent, kernel size = --kernel
 (5 in the article; 1 gives a network that reconstructs every frame independently).
 
-Additional test-time controls (stored for every fold):
+--pool mean: every window is replaced by the average of its 60 feature vectors (the same
+representation as --pool mean of paper_classical.py, standardized by the statistics of the
+averaged train vectors) and the network with the kernels of size 1 is trained on these
+vectors, i.e. it is an autoencoder of one vector (64-32-Z-32-64). Requires --kernel 1.
+
+Additional test-time controls (stored for every fold; without meaning for --pool mean):
   auc_static   every test window is replaced by its middle frame repeated 60 times
   auc_shuffle  the frames of every test window are randomly permuted
 
@@ -68,6 +73,7 @@ parser.add_argument("--feat", required=True, choices=FEATS)
 parser.add_argument("--seed", type=int, default=0)
 parser.add_argument("--latent", type=int, default=16)
 parser.add_argument("--kernel", type=int, default=5)
+parser.add_argument("--pool", default="seq", choices=["seq", "mean"])
 parser.add_argument("--threads", type=int, default=2)
 parser.add_argument("--device", default="cpu", choices=["cpu", "cuda"])
 parser.add_argument("--gpu_mem_frac", type=float, default=0.11)
@@ -81,6 +87,8 @@ device = torch.device(args.device)
 if args.device == "cuda":
     torch.cuda.set_per_process_memory_fraction(args.gpu_mem_frac)
 EVAL_BS = 1024 if args.device == "cpu" else 256
+if args.pool == "mean" and args.kernel != 1:
+    sys.exit("--pool mean requires --kernel 1")
 
 
 # ------------------------------------------------------------------ features
@@ -163,9 +171,17 @@ class WindowSet:
         self.actions = np.array(actions)
         self.clips = np.array(names)
 
+    def to_mean(self):
+        """Replaces every window by the average of its frames (a window of length 1)."""
+        cs = np.concatenate([np.zeros((1, self.X.shape[1])), np.cumsum(self.X.astype(np.float64), axis=0)])
+        self.X = ((cs[self.starts + SEQ_LEN] - cs[self.starts]) / SEQ_LEN).astype(np.float32)
+        self.starts = np.arange(self.n)
+
     def window_stats(self):
         """Mean and std of every feature over all windows (frames weighted by the number
         of windows that contain them), as in paper_extra.py."""
+        if args.pool == "mean":
+            return self.X.mean(axis=0), self.X.std(axis=0)
         w = np.zeros(self.X.shape[0], np.float64)
         np.add.at(w, (self.starts[:, None] + np.arange(SEQ_LEN)[None, :]).ravel(), 1.0)
         X = self.X.astype(np.float64)
@@ -184,7 +200,8 @@ class WindowSet:
         return self.Xt[fr].transpose(1, 2).to(device)
 
 
-ARANGE = torch.arange(SEQ_LEN)
+WIN_T = 1 if args.pool == "mean" else SEQ_LEN   # length of the sequence seen by the network
+ARANGE = torch.arange(WIN_T)
 
 
 # -------------------------------------------------------------------- model
@@ -219,6 +236,8 @@ def train_epoch(model, ws, opt, gen):
     tot = 0.0
     for i in range(0, ws.n, BATCH_SIZE):
         x = ws.batch(perm[i:i + BATCH_SIZE])
+        if x.shape[0] * x.shape[2] < 2:      # batch norm needs more than one value per channel
+            continue
         loss = crit(model(x), x)
         opt.zero_grad()
         loss.backward()
@@ -235,9 +254,9 @@ def window_scores(model, ws, mode="normal", gen=None):
         for i in range(0, ws.n, bs):
             x = ws.batch(torch.arange(i, min(i + bs, ws.n)))
             if mode == "static":
-                x = x[:, :, SEQ_LEN // 2:SEQ_LEN // 2 + 1].expand(-1, -1, SEQ_LEN).contiguous()
+                x = x[:, :, WIN_T // 2:WIN_T // 2 + 1].expand(-1, -1, WIN_T).contiguous()
             elif mode == "shuffle":
-                p = torch.argsort(torch.rand(x.shape[0], SEQ_LEN, generator=gen), dim=1)
+                p = torch.argsort(torch.rand(x.shape[0], WIN_T, generator=gen), dim=1)
                 x = torch.gather(x, 2, p.to(device)[:, None, :].expand(-1, x.shape[1], -1))
             out.append(((model(x) - x) ** 2).mean(dim=(1, 2)).cpu().numpy())
     return np.concatenate(out)
@@ -255,6 +274,8 @@ def main():
         base += "_z{}".format(args.latent)
     if args.kernel != 5:
         base += "_k{}".format(args.kernel)
+    if args.pool == "mean":
+        base += "_mean"
     base += args.tag
     base_seed = "{}_seed{}".format(base, args.seed)
     suffix = ".f{:02d}.json".format(args.only_fold) if args.only_fold >= 0 else ".json"
@@ -271,7 +292,7 @@ def main():
     sys.stdout.flush()
 
     res = {"exp": base, "seed": args.seed, "feature_set": args.feat, "model": "tcn", "seq_len": SEQ_LEN,
-           "latent": args.latent, "kernel": args.kernel, "n_features": D, "n_clips": len(meta),
+           "latent": args.latent, "kernel": args.kernel, "pool": args.pool, "n_features": D, "n_clips": len(meta),
            "device": args.device, "folds": {}}
     if os.path.exists(out_path):
         res = json.load(open(out_path))
@@ -293,6 +314,9 @@ def main():
         tr = WindowSet([c for d in train_drivers for c in cbd[d]], meta_by_clip, feats, "safe")
         va = WindowSet(cbd[val_driver], meta_by_clip, feats, "safe")
         te = WindowSet(cbd[test_driver], meta_by_clip, feats)
+        if args.pool == "mean":
+            for ws in (tr, va, te):
+                ws.to_mean()
         mean, std = tr.window_stats()
         std[std < 1e-6] = 1e-6
         for ws in (tr, va, te):

@@ -54,7 +54,8 @@ RAW = {"beta": os.path.join(HOME, "beta_raw_v2"), "delta": os.path.join(HOME, "d
        "epsilon": os.path.join(HOME, "epsilon_raw_v2"), "zeta": os.path.join(HOME, "zeta_raw_v2")}
 VIT_DIR = os.path.join(HOME, "pose_hands_v2")
 FEAT_SRC = {"coords": "beta", "geom": "beta", "kin": "beta", "exh": "beta", "proxies": "delta",
-            "hands": "epsilon", "hh": "zeta", "vit_coords": "vit", "vit_geom": "vit"}
+            "hands": "epsilon", "hh": "zeta", "vit_coords": "vit", "vit_geom": "vit",
+            "geom_da": "beta"}   # geom_da: only the 8 distances + 5 angles of Geometry (Selected, 13)
 PATIENCE = 10
 LR = 1e-3
 V = 13
@@ -71,10 +72,13 @@ parser.add_argument("--common", action="store_true")
 parser.add_argument("--only_fold", type=int, default=-1)
 parser.add_argument("--max_epochs", type=int, default=100)
 parser.add_argument("--tag", default="")
+parser.add_argument("--gpu_mem_frac", type=float, default=0.0)
 args = parser.parse_args()
 SEQ_LEN = args.seq_len
 BATCH_SIZE = args.batch_size
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+if args.gpu_mem_frac > 0 and device.type == "cuda":   # the GPUs are shared with other users
+    torch.cuda.set_per_process_memory_fraction(args.gpu_mem_frac)
 
 
 # ------------------------------------------------------------------ features
@@ -159,6 +163,8 @@ def build_features(clip, feat):
         return b[:, :39].astype(np.float32)
     if feat == "exh":
         return build_exh(b)
+    if feat == "geom_da":
+        return np.ascontiguousarray(b[:, 39:], dtype=np.float32)
     T = b.shape[0]
     xy = b[:, :39].reshape(T, V, 3)[:, :, :2]
     smoothed = savgol_filter(xy, window_length=5, polyorder=2, axis=0, mode="nearest") if T >= 5 else xy.copy()
