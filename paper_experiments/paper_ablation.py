@@ -60,7 +60,7 @@ HOME = "/home/fei/mik0542"
 OUT_DIR = os.path.join(HOME, "paper_experiments")
 SCORE_DIR = os.path.join(OUT_DIR, "scores")
 MODEL_DIR = os.path.join(OUT_DIR, "models")
-RAW_DIR = os.path.join(HOME, "beta_raw_v2")
+RAW_DIR = os.path.join(HOME, "beta_raw_v2")   # replaced by --raw after the arguments are parsed
 FEATS = ["geom", "exh", "coords_nc", "geom_nc", "geom_da", "dist78", "ang286", "exh_conf", "exh_xy"]
 SEQ_LEN = 60
 BATCH_SIZE = 64
@@ -71,6 +71,7 @@ V = 13
 parser = argparse.ArgumentParser()
 parser.add_argument("--feat", required=True, choices=FEATS)
 parser.add_argument("--seed", type=int, default=0)
+parser.add_argument("--raw", default="beta_raw_v2")   # beta_raw_v3: corrected alignment of the clips, beta_raw_v2s: control
 parser.add_argument("--latent", type=int, default=16)
 parser.add_argument("--kernel", type=int, default=5)
 parser.add_argument("--pool", default="seq", choices=["seq", "mean"])
@@ -82,6 +83,8 @@ parser.add_argument("--max_epochs", type=int, default=100)
 parser.add_argument("--save_models", action="store_true")
 parser.add_argument("--tag", default="")
 args = parser.parse_args()
+RAW_DIR = os.path.join(HOME, args.raw)
+RAW_TAG = "" if args.raw == "beta_raw_v2" else "_" + args.raw.replace("beta_raw_", "")
 torch.set_num_threads(args.threads)
 device = torch.device(args.device)
 if args.device == "cuda":
@@ -276,7 +279,7 @@ def main():
         base += "_k{}".format(args.kernel)
     if args.pool == "mean":
         base += "_mean"
-    base += args.tag
+    base += RAW_TAG + args.tag
     base_seed = "{}_seed{}".format(base, args.seed)
     suffix = ".f{:02d}.json".format(args.only_fold) if args.only_fold >= 0 else ".json"
     out_path = os.path.join(OUT_DIR, base_seed + suffix)

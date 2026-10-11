@@ -35,7 +35,7 @@ from sklearn.ensemble import IsolationForest
 from sklearn.metrics import roc_curve, auc, average_precision_score
 
 HOME = "/home/fei/mik0542"
-RAW_DIR = os.path.join(HOME, "beta_raw_v2")
+RAW_DIR = os.path.join(HOME, "beta_raw_v2")   # replaced by --raw after the arguments are parsed
 OUT_DIR = os.path.join(HOME, "paper_experiments")
 SCORE_DIR = os.path.join(OUT_DIR, "scores")
 FEATS = ["coords", "geom", "exh", "coords_nc", "geom_nc", "geom_da", "dist78", "ang286", "exh_conf", "exh_xy"]
@@ -47,11 +47,14 @@ parser.add_argument("--pool", required=True, choices=["mean", "meanstd", "frame"
 parser.add_argument("--win", type=int, default=60)
 parser.add_argument("--min_clip_len", type=int, default=0)
 parser.add_argument("--seed", type=int, default=0)
+parser.add_argument("--raw", default="beta_raw_v2")   # beta_raw_v3: corrected alignment of the clips, beta_raw_v2s: control
 parser.add_argument("--nu", type=float, default=0.05)
 parser.add_argument("--gamma_mult", type=float, default=1.0)
 parser.add_argument("--subsample", type=int, default=8000)
 parser.add_argument("--methods", default="pca,ocsvm,iforest")
 args = parser.parse_args()
+RAW_DIR = os.path.join(HOME, args.raw)
+RAW_TAG = "" if args.raw == "beta_raw_v2" else "_" + args.raw.replace("beta_raw_", "")
 METHODS = args.methods.split(",")
 SEQ_LEN = args.win
 
@@ -175,6 +178,7 @@ def main():
         base += "_T{}".format(args.win)
     if args.min_clip_len:
         base += "_minL{}".format(args.min_clip_len)
+    base += RAW_TAG
     base_seed = "{}_seed{}".format(base, args.seed)
     out_path = os.path.join(OUT_DIR, base_seed + ".json")
     meta = json.load(open(os.path.join(RAW_DIR, "meta.json")))
